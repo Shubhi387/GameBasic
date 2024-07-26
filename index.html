@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="heading">Choose :</h1>
+    <br>
+    <div class="all-buttons">
+     <button class = "buttons" id = "Rock" onclick="
+        let usermove = 'Rock';
+        let computermove = computerchoice();
+        let resultmsg = result(usermove , computermove);
+        let show = showalert(usermove , computermove, resultmsg);
+         " ><img src="./images/Rock.jpg">
+     </button>
+    
+
+    <button class = "buttons" id= "paper" onclick="
+    usermove = 'Paper';
+    computermove = computerchoice();
+    resultmsg = result(usermove , computermove);
+    show = showalert(usermove , computermove, resultmsg)
+    "><img src="./images/Paper.jpg" alt=""></button>
+
+
+    <button class = "buttons" id = "scissors" onclick="
+    usermove = 'Scissors'
+    computermove = computerchoice();
+    resultmsg = result(usermove , computermove);
+    show = showalert(usermove , computermove, resultmsg);
+    "><img src="./images/Scissors.jpg" alt=""></button>
+    </div>
+</div>
+
+<script>
+    let score = {
+        win:0 , 
+        lost:0,
+        tie:0,
+        displayscore: function(){
+            return  `Won : ${score.win} , Lost = ${score.lost} , Tie = ${score.tie}`;
+        }
+    };
+
+    function computerchoice(){
+    let randomNum = Math.ceil(Math.random()* 3)
+    console.log(randomNum)
+    if (randomNum == 1){
+        return 'Rock';
+    }
+    else if(randomNum == 2){
+        return 'Paper';
+    }
+    else{
+        return 'Scissors';
+    }
+}
+    function result(usermove , computermove){ 
+    if(usermove === 'Rock'){
+        if (computermove === 'Rock'){
+            score.tie++ ; 
+        return 'Its a Tie';
+        }
+        else if(computermove === 'Scissors'){
+            score.win++;
+        return 'Congratulations ! You won ';
+        }
+        else{
+            score.lost++
+        return 'You lost the game';
+        }
+        }
+    else if(usermove === 'Paper'){
+        if (computermove === 'Rock'){
+            score.win++;
+        return 'Congratulations ! You won ';
+        }
+        else if(computermove === 'Scissors'){
+            score.lost++
+        return 'You lost the game';
+        }
+        else{
+            score.tie++ ; 
+        return 'Its tie';
+        }
+        }
+    else{
+        if (computermove === 'Rock'){
+            score.lost++
+        return 'You lost';
+        }
+        else if(computermove === 'Paper'){
+            score.win++;
+        return 'Congratulations ! You won ';
+        }
+        else{
+            score.tie++ ; 
+        return 'Its Tie';
+        }
+        }
+    }
+    function showalert(usermove , computermove , result){
+        alert(`You have chosen ${usermove} . Computer choice is  ${computermove} 
+        and  ${result}
+        ${score.displayscore()}`);
+    }
+
+
+</script>
+</body>
+</html>
